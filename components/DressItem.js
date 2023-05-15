@@ -1,8 +1,9 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../CartReducer";
-import { incrementQty } from "../ProductReducer";
+import { addToCart, incrementQuantity } from "../CartReducer";
+import { decrementQty, incrementQty } from "../ProductReducer";
+import { decrementQuantity } from "../CartReducer";
 
 const DressItem = ({ item }) => {
   const dispatch = useDispatch();
