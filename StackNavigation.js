@@ -19,11 +19,6 @@ const StackNavigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Resgister"
-          component={ResgisterScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{ headerShown: false }}
@@ -36,6 +31,11 @@ const StackNavigation = () => {
         <Stack.Screen
           name="Cart"
           component={CartScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Resgister"
+          component={ResgisterScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

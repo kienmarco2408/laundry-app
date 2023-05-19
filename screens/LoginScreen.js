@@ -1,5 +1,6 @@
 import {
   KeyboardAvoidingView,
+  Pressable,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -8,10 +9,22 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation();
+
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      console.log("user credential", userCredential);
+      const user = userCredential.user;
+      console.log("user details", user);
+    });
+  };
   return (
     <SafeAreaView
       style={{
@@ -44,9 +57,12 @@ const LoginScreen = () => {
               color="black"
             />
             <TextInput
+              value={email}
+              onChangeText={(text) => setEmail(text)}
               placeholder="Email"
               placeholderTextColor="black"
               style={{
+                fontSize: email ? 18 : 18,
                 borderBottomWidth: 1,
                 borderBottomColor: "gray",
                 marginLeft: 13,
@@ -58,17 +74,52 @@ const LoginScreen = () => {
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="key-outline" size={24} color="black" />
             <TextInput
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry={true}
               placeholder="Password"
               placeholderTextColor="black"
               style={{
+                fontSize: password ? 18 : 18,
                 borderBottomWidth: 1,
                 borderBottomColor: "gray",
                 marginLeft: 13,
                 width: 300,
-                marginVertical: 10,
+                marginVertical: 20,
               }}
             />
           </View>
+          <Pressable
+            onPress={login}
+            style={{
+              width: 200,
+              backgroundColor: "#318CE7",
+              padding: 15,
+              borderRadius: 7,
+              marginTop: 50,
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            <Text style={{ fontSize: 18, textAlign: "center", color: "white" }}>
+              Login
+            </Text>
+          </Pressable>
+          <Pressable
+            style={{ marginTop: 20 }}
+            onPress={() => navigation.navigate("Resgister")}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                fontSize: 17,
+                color: "gray",
+                fontWeight: "500",
+              }}
+            >
+              Don't have a account? Sign Up
+            </Text>
+          </Pressable>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
