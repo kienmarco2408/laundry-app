@@ -7,6 +7,8 @@ import PickUpScreen from "./screens/PickUpScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import ResgisterScreen from "./screens/ResgisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import OrderScreen from "./screens/OrderScreen";
 
 const StackNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -36,6 +38,16 @@ const StackNavigation = () => {
         <Stack.Screen
           name="Resgister"
           component={ResgisterScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Order"
+          component={OrderScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
